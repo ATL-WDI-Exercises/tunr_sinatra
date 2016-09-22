@@ -5,24 +5,68 @@ Therefore *DO NOT* edit this file directly!
 Instead edit 'template.md' and then run 'md-process'.
 -->
 
-# Instructions for Building This App
+# Tunr Sinatra App
+
+We are going to build the world's #1 music web app!
 
 ## Table of Contents
 
-* [Step 1 - Create The Project Directory](#step-1---create-the-project-directory)
-* [Step 2 - Create and Seed the Database](#step-2---create-and-seed-the-database)
-* [Step 3 - Create the Model Classes](#step-3---create-the-model-classes)
-* [Step 4 - Seed the Database using the Model Classes](#step-4---seed-the-database-using-the-model-classes)
-* [Step 5 - Create the Controllers](#step-5---create-the-controllers)
-* [Step 6 - Create the Main App File](#step-6---create-the-main-app-file)
-* [Step 7 - Create the Layout and Home View](#step-7---create-the-layout-and-home-view)
-* [Step 8 - Create the Artist Views](#step-8---create-the-artist-views)
-* [Step 9 - Create the Song Views](#step-9---create-the-song-views)
-* [Step 10 - Add the CSS](#step-10---add-the-css)
-* [Step 11 - Create a Gemfile and run Bundler](#step-11---create-a-gemfile-and-run-bundler)
-* [Step 12 - Test it out](#step-12---test-it-out)
+* [Specifications](#specifications)
+  * [Schema](#schema)
+  * [Use Cases](#use-cases)
+* [Instructions for Building The App](#instructions-for-building-the-app)
+  * [Step 1 - Create The Project Directory](#step-1---create-the-project-directory)
+  * [Step 2 - Create and Seed the Database](#step-2---create-and-seed-the-database)
+  * [Step 3 - Create the Model Classes](#step-3---create-the-model-classes)
+  * [Step 4 - Seed the Database using the Model Classes](#step-4---seed-the-database-using-the-model-classes)
+  * [Step 5 - Create the Controllers](#step-5---create-the-controllers)
+  * [Step 6 - Create the Main App File](#step-6---create-the-main-app-file)
+  * [Step 7 - Create the Layout and Home View](#step-7---create-the-layout-and-home-view)
+  * [Step 8 - Create the Artist Views](#step-8---create-the-artist-views)
+  * [Step 9 - Create the Song Views](#step-9---create-the-song-views)
+  * [Step 10 - Add the CSS](#step-10---add-the-css)
+  * [Step 11 - Create a Gemfile and run Bundler](#step-11---create-a-gemfile-and-run-bundler)
+  * [Step 12 - Test it out](#step-12---test-it-out)
 
-## Step 1 - Create The Project Directory
+## Specifications
+
+Tunr provides a RESTful web interface to Songs and Artists.
+
+### Schema
+
+* artists
+  * id
+  * name
+  * photo_url
+  * nationality
+
+* songs
+  * id
+  * title
+  * album
+  * preview_url
+  * artist_id
+
+### Use Cases
+
+For Artists, a user should be able to:
+  * view a list of all artists
+  * view detailed information on a specific artist
+    * that page should list all songs by the artist
+  * add a new artist
+  * edit an existing artist
+  * delete a artist
+
+For Songs, a user should be able to:
+  * view a list of all songs
+  * view detailed information on a specific song
+  * add a new song (using the artist_id # to connect it to an artist
+  * edit an existing song
+  * delete a song
+
+## Instructions for Building The App
+
+### Step 1 - Create The Project Directory
 
 ```bash
 cd ~/ga/wdi/exercises
@@ -30,7 +74,7 @@ mkdir tunr_sinatra
 cd tunr_sinatra
 ```
 
-## Step 2 - Create and Seed the Database
+### Step 2 - Create and Seed the Database
 
 2a. Create the `tunr_sinatra` database:
 
@@ -67,7 +111,7 @@ CREATE TABLE songs (
 psql -d tunr_sinatra < db/schema.sql
 ```
 
-## Step 3 - Create the Model Classes
+### Step 3 - Create the Model Classes
 
 3a. Create the files
 
@@ -93,7 +137,7 @@ class Song < ActiveRecord::Base
 end
 ```
 
-## Step 4 - Seed the Database using the Model Classes
+### Step 4 - Seed the Database using the Model Classes
 
 4a. Create the `db/seeds.rb` file:
 
@@ -225,7 +269,7 @@ end
 ruby db/seeds.rb
 ```
 
-## Step 5 - Create the Controllers
+### Step 5 - Create the Controllers
 
 5a. Create the files
 
@@ -329,7 +373,7 @@ delete "/songs/:id" do
 end
 ```
 
-## Step 6 - Create the Main App File
+### Step 6 - Create the Main App File
 
 6a. Create the file:
 
@@ -364,7 +408,7 @@ get "/" do
 end
 ```
 
-## Step 7 - Create the Layout and Home View
+### Step 7 - Create the Layout and Home View
 
 7a. Create the files
 
@@ -401,7 +445,7 @@ touch home.erb
 Tunr is the worlds #1 music web app.
 ```
 
-## Step 8 - Create the Artist Views
+### Step 8 - Create the Artist Views
 
 8a. Create the files:
 
@@ -496,7 +540,7 @@ touch views/artists/edit.erb
 </form>
 ```
 
-## Step 9 - Create the Song Views
+### Step 9 - Create the Song Views
 
 9a. Create the files:
 
@@ -586,7 +630,7 @@ Album: <%= @song.album %></br>
 </form>
 ```
 
-## Step 10 - Add the CSS
+### Step 10 - Add the CSS
 
 10a. Create the file:
 
@@ -677,7 +721,7 @@ span.nationality {
 }
 ```
 
-## Step 11 - Create a Gemfile and run Bundler
+### Step 11 - Create a Gemfile and run Bundler
 
 11a. Create the Gemfile
 
@@ -705,7 +749,7 @@ gem 'pg'
 bundle install
 ```
 
-## Step 12 - Test it out
+### Step 12 - Test it out
 
 ```bash
 ruby app.rb

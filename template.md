@@ -1,8 +1,48 @@
-# Instructions for Building This App
+# Tunr Sinatra App
+
+We are going to build the world's #1 music web app!
 
 {{ TOC }}
 
-## Step 1 - Create The Project Directory
+## Specifications
+
+Tunr provides a RESTful web interface to Songs and Artists.
+
+### Schema
+
+* artists
+  * id
+  * name
+  * photo_url
+  * nationality
+
+* songs
+  * id
+  * title
+  * album
+  * preview_url
+  * artist_id
+
+### Use Cases
+
+For Artists, a user should be able to:
+  * view a list of all artists
+  * view detailed information on a specific artist
+    * that page should list all songs by the artist
+  * add a new artist
+  * edit an existing artist
+  * delete a artist
+
+For Songs, a user should be able to:
+  * view a list of all songs
+  * view detailed information on a specific song
+  * add a new song (using the artist_id # to connect it to an artist
+  * edit an existing song
+  * delete a song
+
+## Instructions for Building The App
+
+### Step 1 - Create The Project Directory
 
 ```bash
 cd ~/ga/wdi/exercises
@@ -10,7 +50,7 @@ mkdir tunr_sinatra
 cd tunr_sinatra
 ```
 
-## Step 2 - Create and Seed the Database
+### Step 2 - Create and Seed the Database
 
 2a. Create the `tunr_sinatra` database:
 
@@ -31,7 +71,7 @@ touch db/schema.sql
 psql -d tunr_sinatra < db/schema.sql
 ```
 
-## Step 3 - Create the Model Classes
+### Step 3 - Create the Model Classes
 
 3a. Create the files
 
@@ -53,7 +93,7 @@ touch models/song.rb
 {{models/song.rb}}
 ```
 
-## Step 4 - Seed the Database using the Model Classes
+### Step 4 - Seed the Database using the Model Classes
 
 4a. Create the `db/seeds.rb` file:
 
@@ -85,7 +125,7 @@ touch db/connection.rb
 ruby db/seeds.rb
 ```
 
-## Step 5 - Create the Controllers
+### Step 5 - Create the Controllers
 
 5a. Create the files
 
@@ -107,7 +147,7 @@ touch controllers/songs.rb
 {{ controllers/songs.rb }}
 ```
 
-## Step 6 - Create the Main App File
+### Step 6 - Create the Main App File
 
 6a. Create the file:
 
@@ -121,7 +161,7 @@ touch app.rb
 {{ app.rb }}
 ```
 
-## Step 7 - Create the Layout and Home View
+### Step 7 - Create the Layout and Home View
 
 7a. Create the files
 
@@ -143,7 +183,7 @@ touch home.erb
 {{ views/home.erb }}
 ```
 
-## Step 8 - Create the Artist Views
+### Step 8 - Create the Artist Views
 
 8a. Create the files:
 
@@ -179,7 +219,7 @@ touch views/artists/edit.erb
 {{ views/artists/edit.erb }}
 ```
 
-## Step 9 - Create the Song Views
+### Step 9 - Create the Song Views
 
 9a. Create the files:
 
@@ -215,7 +255,7 @@ touch views/songs/edit.erb
 {{ views/songs/edit.erb }}
 ```
 
-## Step 10 - Add the CSS
+### Step 10 - Add the CSS
 
 10a. Create the file:
 
@@ -230,7 +270,7 @@ touch public/style.css
 {{ public/style.css }}
 ```
 
-## Step 11 - Create a Gemfile and run Bundler
+### Step 11 - Create a Gemfile and run Bundler
 
 11a. Create the Gemfile
 
@@ -250,7 +290,7 @@ touch Gemfile
 bundle install
 ```
 
-## Step 12 - Test it out
+### Step 12 - Test it out
 
 ```bash
 ruby app.rb
