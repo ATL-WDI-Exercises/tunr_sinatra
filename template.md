@@ -295,3 +295,7 @@ bundle install
 ```bash
 ruby app.rb
 ```
+
+## Bonuses
+
+For some bonuses check out [bonuses](bonuses.md)

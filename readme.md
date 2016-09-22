@@ -27,6 +27,7 @@ We are going to build the world's #1 music web app!
   * [Step 10 - Add the CSS](#step-10---add-the-css)
   * [Step 11 - Create a Gemfile and run Bundler](#step-11---create-a-gemfile-and-run-bundler)
   * [Step 12 - Test it out](#step-12---test-it-out)
+* [Bonuses](#bonuses)
 
 ## Specifications
 
@@ -754,3 +755,7 @@ bundle install
 ```bash
 ruby app.rb
 ```
+
+## Bonuses
+
+For some bonuses check out [bonuses](bonuses.md)
