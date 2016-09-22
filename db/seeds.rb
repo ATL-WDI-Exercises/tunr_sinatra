@@ -5,10 +5,6 @@ require_relative 'connection'
 require_relative '../models/artist'
 require_relative '../models/song'
 
-# data
-require_relative './song_data.rb'
-require_relative './artist_data.rb'
-
 puts 'Seeding database with lots of groovy songs...'
 
 Song.destroy_all

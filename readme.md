@@ -13,21 +13,14 @@ Instead edit 'template.md' and then run 'md-process'.
 * [Step 2 - Create and Seed the Database](#step-2---create-and-seed-the-database)
 * [Step 3 - Create the Model Classes](#step-3---create-the-model-classes)
 * [Step 4 - Seed the Database using the Model Classes](#step-4---seed-the-database-using-the-model-classes)
-* [Step 5 - Create the DB Connection configuration](#step-5---create-the-db-connection-configuration)
-* [Step 6 - Create the Controllers](#step-6---create-the-controllers)
-* [Step 7 - Create the Main App File](#step-7---create-the-main-app-file)
-* [Step 8 - Create the Layout and Views](#step-8---create-the-layout-and-views)
-  * [views/layout.erb](#viewslayouterb)
-  * [views/home.erb](#viewshomeerb)
-  * [views/artists/index.erb](#viewsartistsindexerb)
-  * [views/artists/show.erb](#viewsartistsshowerb)
-  * [views/artists/new.erb](#viewsartistsnewerb)
-  * [views/artists/edit.erb](#viewsartistsediterb)
-  * [views/songs/index.erb](#viewssongsindexerb)
-  * [views/songs/show.erb](#viewssongsshowerb)
-  * [views/songs/new.erb](#viewssongsnewerb)
-  * [views/songs/edit.erb](#viewssongsediterb)
-* [Step 9 - Test it out](#step-9---test-it-out)
+* [Step 5 - Create the Controllers](#step-5---create-the-controllers)
+* [Step 6 - Create the Main App File](#step-6---create-the-main-app-file)
+* [Step 7 - Create the Layout and Home View](#step-7---create-the-layout-and-home-view)
+* [Step 8 - Create the Artist Views](#step-8---create-the-artist-views)
+* [Step 9 - Create the Song Views](#step-9---create-the-song-views)
+* [Step 10 - Add the CSS](#step-10---add-the-css)
+* [Step 11 - Create a Gemfile and run Bundler](#step-11---create-a-gemfile-and-run-bundler)
+* [Step 12 - Test it out](#step-12---test-it-out)
 
 ## Step 1 - Create The Project Directory
 
@@ -48,7 +41,7 @@ mkdir db
 touch db/schema.sql
 ```
 
-Set the contents of `db/schema.sql` to the following:
+2b. Set the contents of `db/schema.sql` to the following:
 
 ```sql
 DROP TABLE IF EXISTS songs   CASCADE;
@@ -76,13 +69,15 @@ psql -d tunr_sinatra < db/schema.sql
 
 ## Step 3 - Create the Model Classes
 
+3a. Create the files
+
 ```bash
 mkdir models
 touch models/artist.rb
 touch models/song.rb
 ```
 
-Set the contents of `models/artist.rb` to the following:
+3b. Set the contents of `models/artist.rb` to the following:
 
 ```ruby
 class Artist < ActiveRecord::Base
@@ -90,7 +85,7 @@ class Artist < ActiveRecord::Base
 end
 ```
 
-Set the contents of `models/songs.rb` to the following:
+3c. Set the contents of `models/song.rb` to the following:
 
 ```ruby
 class Song < ActiveRecord::Base
@@ -100,13 +95,13 @@ end
 
 ## Step 4 - Seed the Database using the Model Classes
 
-4a. Create the `db/seeds.js` file:
+4a. Create the `db/seeds.rb` file:
 
 ```bash
-touch db/seeds.js
+touch db/seeds.rb
 ```
 
-Set the contents of `db/seeds.rb` to the following:
+4b. Set the contents of `db/seeds.rb` to the following:
 
 ```ruby
 require 'active_record'
@@ -115,10 +110,6 @@ require_relative 'connection'
 # models
 require_relative '../models/artist'
 require_relative '../models/song'
-
-# data
-require_relative './song_data.rb'
-require_relative './artist_data.rb'
 
 puts 'Seeding database with lots of groovy songs...'
 
@@ -205,19 +196,13 @@ kiss.songs.create([
 puts 'Seeding has completed!'
 ```
 
-4b. Run the seeds file:
-
-```ruby
-ruby db/seeds.rb
-```
-
-## Step 5 - Create the DB Connection configuration
+4c. Create the DB Connection configuration
 
 ```bash
 touch db/connection.rb
 ```
 
-Set the contents of `db/connection.rb` to the following:
+4d. Set the contents of `db/connection.rb` to the following:
 
 ```ruby
 # Load Active Record and connect to the DB
@@ -234,14 +219,23 @@ if defined? Sinatra
 end
 ```
 
-## Step 6 - Create the Controllers
+4e. Run the seeds file:
+
+```ruby
+ruby db/seeds.rb
+```
+
+## Step 5 - Create the Controllers
+
+5a. Create the files
 
 ```bash
+mkdir controllers
 touch controllers/artists.rb
 touch controllers/songs.rb
 ```
 
-Set the contents of `controllers/artists.rb` to the following:
+5b. Set the contents of `controllers/artists.rb` to the following:
 
 ```ruby
 # index
@@ -288,7 +282,7 @@ delete "/artists/:id" do
 end
 ```
 
-Set the contents of `controllers/songs.rb` to the following:
+5c. Set the contents of `controllers/songs.rb` to the following:
 
 ```ruby
 # index
@@ -335,13 +329,15 @@ delete "/songs/:id" do
 end
 ```
 
-## Step 7 - Create the Main App File
+## Step 6 - Create the Main App File
+
+6a. Create the file:
 
 ```bash
 touch app.rb
 ```
 
-Set the contents of `app.rb` to the following:
+6b. Set the contents of `app.rb` to the following:
 
 ```ruby
 require 'sinatra'
@@ -368,27 +364,17 @@ get "/" do
 end
 ```
 
-## Step 8 - Create the Layout and Views
+## Step 7 - Create the Layout and Home View
+
+7a. Create the files
 
 ```bash
 mkdir views
 touch layout.erb
 touch home.erb
-
-mkdir views/artists
-touch views/artists/index.erb
-touch views/artists/show.erb
-touch views/artists/new.erb
-touch views/artists/edit.erb
-
-mkdir views/songs
-touch views/songs/index.erb
-touch views/songs/show.erb
-touch views/songs/new.erb
-touch views/songs/edit.erb
 ```
 
-### views/layout.erb
+7b. Add the following content to `views/layout.erb`:
 
 ```ruby
 <html>
@@ -407,7 +393,7 @@ touch views/songs/edit.erb
 </html>
 ```
 
-### views/home.erb
+7c. Add the following content to `views/home.erb`:
 
 ```ruby
 <h2>Home</h2>
@@ -415,7 +401,19 @@ touch views/songs/edit.erb
 Tunr is the worlds #1 music web app.
 ```
 
-### views/artists/index.erb
+## Step 8 - Create the Artist Views
+
+8a. Create the files:
+
+```bash
+mkdir views/artists
+touch views/artists/index.erb
+touch views/artists/show.erb
+touch views/artists/new.erb
+touch views/artists/edit.erb
+```
+
+8b. Add the following content to `views/artists/index.erb`:
 
 ```ruby
 <h2>Artists <a href="/artists/new">(+)</a></h2>
@@ -431,7 +429,7 @@ Tunr is the worlds #1 music web app.
 </ul>
 ```
 
-### views/artists/show.erb
+8c. Add the following content to `views/artists/show.erb`:
 
 ```ruby
 <h2><%= @artist.name %> <a href="/artists/<%= @artist.id %>/edit">(edit)</a></h2>
@@ -453,7 +451,7 @@ Tunr is the worlds #1 music web app.
 </ul>
 ```
 
-### views/artists/new.erb
+8d. Add the following content to `views/artists/new.erb`:
 
 ```ruby
 <h2>New Artist</h2>
@@ -462,7 +460,7 @@ Tunr is the worlds #1 music web app.
   <label for="artist[name]">Name:</label>
   <input name="artist[name]">
 
-  <label for="artistx[photo_url]">Photo URL:</label>
+  <label for="artist[photo_url]">Photo URL:</label>
   <input name="artist[photo_url]">
 
   <label for="artist[nationality]">Nationality:</label>
@@ -472,7 +470,7 @@ Tunr is the worlds #1 music web app.
 </form>
 ```
 
-### views/artists/edit.erb
+8e. Add the following content to `views/artists/edit.erb`:
 
 ```ruby
 <h2>Edit Artist</h2>
@@ -483,7 +481,7 @@ Tunr is the worlds #1 music web app.
   <label for="artist[name]">Name:</label>
   <input name="artist[name]" value="<%= @artist.name %>">
 
-  <label for="artistx[photo_url]">Photo URL:</label>
+  <label for="artist[photo_url]">Photo URL:</label>
   <input name="artist[photo_url]" value="<%= @artist.photo_url %>">
 
   <label for="artist[nationality]">Nationality:</label>
@@ -498,7 +496,19 @@ Tunr is the worlds #1 music web app.
 </form>
 ```
 
-### views/songs/index.erb
+## Step 9 - Create the Song Views
+
+9a. Create the files:
+
+```bash
+mkdir views/songs
+touch views/songs/index.erb
+touch views/songs/show.erb
+touch views/songs/new.erb
+touch views/songs/edit.erb
+```
+
+9b. Add the following content to `views/songs/index.erb`:
 
 ```ruby
 <h2>Songs <a href="/songs/new">(+)</a></h2>
@@ -514,7 +524,7 @@ Tunr is the worlds #1 music web app.
 </ul>
 ```
 
-### views/songs/show.erb
+9c. Add the following content to `views/songs/show.erb`:
 
 ```ruby
 <h2><%= @song.title %> <a href="/songs/<%= @song.id %>/edit">(edit)</a></h2>
@@ -525,7 +535,7 @@ Album: <%= @song.album %></br>
 <audio controls src="<%= @song.preview_url %>"></audio>
 ```
 
-### views/songs/new.erb
+9d. Add the following content to `views/songs/new.erb`:
 
 ```ruby
 <h2>New Song</h2>
@@ -547,7 +557,7 @@ Album: <%= @song.album %></br>
 </form>
 ```
 
-### views/songs/edit.erb
+9e. Add the following content to `views/songs/edit.erb`:
 
 ```ruby
 <h2>Edit Song</h2>
@@ -576,7 +586,126 @@ Album: <%= @song.album %></br>
 </form>
 ```
 
-## Step 9 - Test it out
+## Step 10 - Add the CSS
+
+10a. Create the file:
+
+```bash
+mkdir public
+touch public/style.css
+```
+
+10b. Add the following content to `public/style.css`:
+
+```css
+body{
+  font-family:'Helvetica Neue', sans-serif;
+  max-width: 50em;
+  margin:auto;
+  padding:2em 1em;
+}
+
+nav a {
+  border: 1px solid black;
+  margin: .5em;
+  padding: .5em;
+  background-color: #eeeeee;
+}
+
+nav a:hover {
+  background-color: orange;
+  color: blue;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: blue;
+}
+
+a:hover {
+  background-color: #ccc;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin: .25em;
+}
+
+h1 {
+  font-inherit;
+  color:inherit;
+  letter-spacing:-.05em;
+  text-decoration:none;
+  border-bottom:1px solid black;
+}
+
+h2 > a {
+  font-size: .75em;
+}
+
+input {
+  display: block;
+  margin: 5px 0 20px 0;
+  padding: 9px;
+  border: solid 1px black;
+  width: 300px;
+  background: whitesmoke;
+}
+
+input[type=submit] {
+  width: auto;
+  padding: 9px 15px;
+  background-color: gray;
+  border: 0;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+input.button-delete {
+  background-color: red;
+}
+
+.artist-photo {
+  width: 400px;
+}
+
+span.nationality {
+  font-size: .5em;
+}
+```
+
+## Step 11 - Create a Gemfile and run Bundler
+
+11a. Create the Gemfile
+
+```bash
+touch Gemfile
+```
+
+11b. Add the following content to `Gemfile`:
+
+```ruby
+source 'https://rubygems.org'
+
+gem 'pry'
+
+gem 'sinatra'
+gem 'sinatra-contrib'
+
+gem 'activerecord'
+gem 'pg'
+```
+
+11c. Run Bundler
+
+```bash
+bundle install
+```
+
+## Step 12 - Test it out
 
 ```bash
 ruby app.rb
