@@ -2,9 +2,20 @@
 
 ## Bonus #1 - Select Input Control
 
-* Use a select box of artist names instead of the artist_id when adding/editing songs. This enhancement will *not* change how the data is stored in the database, but will only change how the `new` and `edit` forms work.
+Use a select box of artist names instead of the artist_id when adding/editing songs. This enhancement should *not* change how the data is stored in the database, but will only change how the `new` and `edit` forms work.
 
-## Bonus #2 - Playlists
+## Bonus #2 - Song Search
+
+Add a Song Search feature to the Songs `index` page that alows a user to search for songs by title.
+
+* You should use a form with a `text` input control, a `Search` button, and a 'Clear' button.
+* The search form should send a `GET` request with the search data in the `URL`.
+  - For example entering the text `red` would result in an HTTP GET request with the url `/songs?title=red`.
+  - The search results should be case insensitive and should include partial matches (i.e. for the search text "red" the search results should include the song "Little Red Corvette").
+  - Note that you are using the same Songs `index` page for both listing all songs and displaying Song search results. Thus if you search with the empty string the page should show all of the songs.
+* If the user clicks the `Clear` button the song `index` page should reload with no search enabled and should display all of the songs.
+
+## Bonus #3 - Playlists
 
 Add support for Playlists to the Tunr app. A user should be able to:
 
