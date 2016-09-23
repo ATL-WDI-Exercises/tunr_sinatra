@@ -10,8 +10,21 @@
   <label for="song[preview_url]">Preview URL:</label>
   <input name="song[preview_url]">
 
-  <label for="song[artist_id]">Artist ID:</label>
-  <input name="song[artist_id]">
+  <label for="song[artist_id]">Artist:</label>
+  <div class="styled-select">
+    <select name="song[artist_id]">
+      <optgroup>
+        <option>Choose an artist</option>
+        <% Artist.all.each do |artist| %>
+          <option value="<%= artist.id%>">
+            <%= artist.name %>
+          </option>
+        <% end %>
+      </optgroup>
+    </select>
+  </div>
+
+  <br>
 
   <input type="submit" value="Create">
 </form>

@@ -1,4 +1,4 @@
-body{
+body {
   font-family:'Helvetica Neue', sans-serif;
   max-width: 50em;
   margin:auto;
@@ -74,4 +74,19 @@ input.button-delete {
 
 span.nationality {
   font-size: .5em;
+}
+
+.styled-select {
+  margin-top: 5px;
+}
+
+.styled-select select {
+  display: block;
+  margin: 5px 0 20px 0;
+  padding: 10px;
+  border: solid 1px black;
+  width: 300px;
+  background: whitesmoke;
+  font-size: 14px;
+  height: 30px;
 }
