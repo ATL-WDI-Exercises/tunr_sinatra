@@ -55,10 +55,10 @@ input {
   background: whitesmoke;
 }
 
-input[type=submit] {
+.btn, input[type=submit] {
   width: auto;
   padding: 9px 15px;
-  background-color: gray;
+  background-color: green;
   border: 0;
   font-size: 14px;
   color: #FFFFFF;
@@ -90,3 +90,35 @@ span.nationality {
   font-size: 14px;
   height: 30px;
 }
+
+
+.search {
+  margin-top: 20px;
+  display: flex;
+  max-width: 400px;
+}
+
+.search:before {
+  /* Don't shrink or grow and use a default size */
+  flex: 0 0 2.75em;
+}
+
+.searchbox-query {
+  /* Shrink and grow as needed, but never shrink so
+     small that we can't read the placeholder */
+  flex: 1 0 8em;
+}
+
+.btn {
+  /* Never shrink or grow */
+  flex: 0 0 auto;
+  color: white !important;
+}
+
+.clear {
+  text-align: center;
+  height: 17px;
+  margin-top: 5px;
+  background-color: #a55100;
+}
+

@@ -1,6 +1,9 @@
 # index
 get "/songs" do
-  @songs = Song.all
+  @search_title = params[:title]
+  @songs = @search_title ?
+           Song.where("lower(title) LIKE (?)", "%#{@search_title.downcase}%") :
+           Song.all
   erb(:"songs/index")
 end
 

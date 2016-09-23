@@ -1,3 +1,16 @@
+<form>
+  <div class="search">
+    <input class="searchbox-query"
+           type="search"
+           name="title"
+           value="<%= @search_title %>"
+           placeholder="Enter a song name here"/>
+    <input class="btn"
+           type="submit" value="Search">
+    <a class="btn clear" href="/songs">Clear</a>
+  </div>
+</form>
+
 <h2>Songs <a href="/songs/new">(+)</a></h2>
 
 <ul>
