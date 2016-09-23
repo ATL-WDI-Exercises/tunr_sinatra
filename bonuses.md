@@ -8,7 +8,7 @@ Use a select box of artist names instead of the artist_id when adding/editing so
 
 Add a Song Search feature to the Songs `index` page that alows a user to search for songs by title.
 
-* You should use a form with a `text` input control, a `Search` button, and a 'Clear' button.
+* You should use a form with a `text` (or `search`) input control, a `Search` button, and a `Clear` button.
 * The search form should send a `GET` request with the search data in the `URL`.
   - For example entering the text `red` would result in an HTTP GET request with the url `/songs?title=red`.
   - The search results should be case insensitive and should include partial matches (i.e. for the search text "red" the search results should include the song "Little Red Corvette").
@@ -25,7 +25,6 @@ Add support for Playlists to the Tunr app. A user should be able to:
 * add songs to an existing playlist
 * remove songs from an existing playlist
 * delete a playlist
-
 
 To support playlists you should create the following:
 
