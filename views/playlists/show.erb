@@ -1,0 +1,42 @@
+<section class="playlist-container">
+  <h2>Playlist: <span class="playlist"><%= @playlist.name %></span></h2>
+
+  <div style="margin-top: 10px; margin-left: 10px;">
+    <form action="/playlists/<%= @playlist.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input class="btn delete" type="submit" value="Delete!">
+    </form>
+  </div>
+</section>
+
+<section class="playlist-container2">
+  <article style="width: 50%">
+    <h3 style="margin-left: 40px">Songs</h3>
+    <ul>
+      <% @playlist.songs.each do |song| %>
+        <li>
+          <a href="/songs/<%= song.id %>">
+            <%= song.title %> - <%= song.artist.name %>
+          </a>
+          <a class="red" href="/playlists/<%= @playlist.id %>/remove_song/<%= song.id%>">(remove)</a>
+        </li>
+      <% end %>
+    </ul>
+  </article>
+
+  <article style="margin-left: 40px; width: 50%">
+    <h3>Add Song</h3>
+    <form action="/playlists/<%= @playlist.id %>/add_song" method="post">
+      <div class="styled-select">
+        <select name="song_id">
+          <% get_songs_not_in_playlist(@playlist).each do |song| %>
+            <option value="<%= song.id%>">
+              <%= song.artist.name + " - " + song.title %>
+            </option>
+          <% end %>
+        </select>
+      </div>
+      <input type="submit" class="btn success" value="Add">
+    </form>
+  </article>
+</section>

@@ -4,9 +4,10 @@ require_relative 'connection'
 # models
 require_relative '../models/artist'
 require_relative '../models/song'
+require_relative '../models/playlist'
 
 puts 'Seeding database with lots of groovy songs...'
-
+Playlist.destroy_all
 Song.destroy_all
 Artist.destroy_all
 
@@ -86,5 +87,15 @@ kiss.songs.create([
     preview_url: 'http://a1263.phobos.apple.com/us/r1000/024/Music2/v4/4b/c1/90/4bc19072-f988-711e-48e6-1f5b30eb3015/mzaf_1024396724032502171.plus.aac.p.m4a'
   }
 ])
+
+playlist_names = %w(TunrDownForWhat? WorkoutJamz ScreenMusic)
+
+playlist_names.each do |playlist_name|
+  new_playlist = Playlist.create!({
+    name: playlist_name
+  })
+  new_playlist.songs << Song.all.sample(3 + rand(7))
+  puts "new_pLaylist: #{new_playlist}"
+end
 
 puts 'Seeding has completed!'

@@ -1,3 +1,5 @@
+<h2>Songs <a href="/songs/new">(+)</a></h2>
+
 <form>
   <div class="search">
     <input class="searchbox-query"
@@ -5,13 +7,11 @@
            name="title"
            value="<%= @search_title %>"
            placeholder="Enter a song name here"/>
-    <input class="btn"
+    <input class="btn search-btn success"
            type="submit" value="Search">
-    <a class="btn clear" href="/songs">Clear</a>
+    <button class="btn search-btn delete"><a class="clear" href="/songs">Clear</a></button>
   </div>
 </form>
-
-<h2>Songs <a href="/songs/new">(+)</a></h2>
 
 <ul>
   <% @songs.each do |song| %>

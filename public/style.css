@@ -3,6 +3,11 @@ body {
   max-width: 50em;
   margin:auto;
   padding:2em 1em;
+  background-color: #ccc;
+}
+
+nav {
+  margin-bottom: 40px;
 }
 
 nav a {
@@ -22,9 +27,11 @@ a, a:visited {
   color: blue;
 }
 
+/*
 a:hover {
   background-color: #ccc;
 }
+*/
 
 ul {
   list-style-type: none;
@@ -55,19 +62,6 @@ input {
   background: whitesmoke;
 }
 
-.btn, input[type=submit] {
-  width: auto;
-  padding: 9px 15px;
-  background-color: green;
-  border: 0;
-  font-size: 14px;
-  color: #FFFFFF;
-}
-
-input.button-delete {
-  background-color: red;
-}
-
 .artist-photo {
   width: 400px;
 }
@@ -91,7 +85,6 @@ span.nationality {
   height: 30px;
 }
 
-
 .search {
   margin-top: 20px;
   display: flex;
@@ -109,16 +102,63 @@ span.nationality {
   flex: 1 0 8em;
 }
 
+.btn, input[type=submit] {
+  width: auto;
+  padding: 9px 15px;
+  border: 0;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+.primary {
+  background-color: #a55100;
+}
+
+.success {
+  background-color: green;
+}
+
+.delete {
+  background-color: red;
+}
+
+.red {
+  color: red !important;
+}
+
 .btn {
   /* Never shrink or grow */
   flex: 0 0 auto;
-  color: white !important;
+  color: white;
+  height: 38px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.search-btn {
+  flex: 0 0 auto;
+  height: 38px;
+  margin-top: 5px;
+  border-radius: 0;
+}
+
+.btn > a {
+  color: white;
 }
 
 .clear {
   text-align: center;
   height: 17px;
-  margin-top: 5px;
-  background-color: #a55100;
 }
 
+.playlist {
+  font-style: italic;
+  color: blue;
+}
+
+.playlist-container {
+  display: flex;
+  flex-direction: row;
+  /*align-items: center;*/
+  /*text-align: center;*/
+}

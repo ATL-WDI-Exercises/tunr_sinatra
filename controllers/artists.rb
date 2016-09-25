@@ -1,6 +1,6 @@
 # index
 get "/artists" do
-  @artists = Artist.all
+  @artists = Artist.order(:name)
   erb(:"artists/index")
 end
 

@@ -2,8 +2,8 @@
 get "/songs" do
   @search_title = params[:title]
   @songs = @search_title ?
-           Song.where("lower(title) LIKE (?)", "%#{@search_title.downcase}%") :
-           Song.all
+           Song.where("lower(title) LIKE (?)", "%#{@search_title.downcase}%").order(:title) :
+           Song.order(:title)
   erb(:"songs/index")
 end
 

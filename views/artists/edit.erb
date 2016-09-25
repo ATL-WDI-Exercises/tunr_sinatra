@@ -12,10 +12,10 @@
   <label for="artist[nationality]">Nationality:</label>
   <input name="artist[nationality]" value="<%= @artist.nationality %>">
 
-  <input type="submit" value="Create">
+  <input type="submit" class="btn success" value="Create">
 </form>
 
 <form action="/artists/<%= @artist.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
-  <input class="button-delete" type="submit" value="Delete!">
+  <input class="btn delete" type="submit" value="Delete!">
 </form>
