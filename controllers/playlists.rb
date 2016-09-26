@@ -2,14 +2,14 @@
 helpers do
   def get_songs_not_in_playlist(playlist)
     playlist.songs.length > 0 ?
-    Song.where("id NOT IN (?)", @playlist.songs.map(&:id)) :
-    Song.all
+    Song.where("id NOT IN (?)", @playlist.songs.map(&:id)).order(:title) :
+    Song.order(:title)
   end
 end
 
 # index
 get "/playlists" do
-  @playlists = Playlist.all
+  @playlists = Playlist.order(:name)
   erb(:"playlists/index")
 end
 

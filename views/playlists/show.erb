@@ -31,7 +31,7 @@
         <select name="song_id">
           <% get_songs_not_in_playlist(@playlist).each do |song| %>
             <option value="<%= song.id%>">
-              <%= song.artist.name + " - " + song.title %>
+              <%= song.title + " - " + song.artist.name %>
             </option>
           <% end %>
         </select>

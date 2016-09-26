@@ -16,7 +16,7 @@
   <div class="styled-select">
     <select name="song[artist_id]">
       <optgroup>
-        <% Artist.all.each do |artist| %>
+        <% Artist.order(:name).each do |artist| %>
           <option value="<%= artist.id%>"
             <%= 'selected="selected"' if @song.artist.id == artist.id %>
             ><%= artist.name %>
